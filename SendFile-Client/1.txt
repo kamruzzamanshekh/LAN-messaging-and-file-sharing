@@ -1,6 +1,3 @@
-Vignesh$Hello
-Vineeth$1234
-Manoj$2345
-Akash$1234
-Sekh$5678
-Robi$1212
+AKASH$1234
+SEKH$5678
+ROBI$5678

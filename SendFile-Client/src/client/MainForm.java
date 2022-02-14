@@ -1,3 +1,4 @@
+
 package client;
 
 import java.awt.Color;
@@ -27,10 +28,7 @@ public class MainForm extends javax.swing.JFrame {
     public boolean attachmentOpen = false;
     private boolean isConnected = false;
     private String mydownloadfolder = "D:\\";
-    
-    /**
-     * Creates new form MainForm
-     */
+
     public MainForm() {
         initComponents();
     }
@@ -39,8 +37,8 @@ public class MainForm extends javax.swing.JFrame {
         this.username = username;
         this.host = host;
         this.port = port;
-        setTitle("\t# Inbox of " + username+" #");
-        /** Connect **/
+        setTitle("###   Inbox of [ " + username+" ]");
+       
         connect();
     }
     
@@ -52,35 +50,31 @@ public class MainForm extends javax.swing.JFrame {
             socket = new Socket(host, port);
             dos = new DataOutputStream(socket.getOutputStream());
             
-            /** Send our username **/
+           
             dos.writeUTF("CMD_JOIN "+ username);
-            //appendMessage(" Connected", "Status", Color.orange, Color.RED);
-            appendMessage("  Now you can message anyone in the network :)", "    Status", Color.orange, Color.green);
+            appendMessage(" Connected", "Status", Color.orange, Color.RED);
+            //appendMessage(" type your message now.!", "Status", Color.orange, Color.RED);
             
-            /** Start Client Thread **/
+           
             new Thread(new ClientThread(socket, this)).start();
             jButton1.setEnabled(true);
-            // were now connected
+            
             isConnected = true;
             
         }
         catch(IOException e) {
             isConnected = false;
-            JOptionPane.showMessageDialog(this, "Unable to Connect to Server, please try again later.!"," Connection Failed ",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Unable to Connect to Server, please try again later.!","Connection Failed",JOptionPane.ERROR_MESSAGE);
             appendMessage("[IOException]: "+ e.getMessage(), "Error", Color.RED, Color.RED);
         }
     }
     
-    /*
-        is Connected
-    */
+
     public boolean isConnected(){
         return this.isConnected;
     }
     
-    /*
-        System Message
-    */
+
     public void appendMessage(String msg, String header, Color headerColor, Color contentColor){
         jTextPane1.setEditable(true);
         getMsgHeader(header, headerColor);
@@ -88,9 +82,7 @@ public class MainForm extends javax.swing.JFrame {
         jTextPane1.setEditable(false);
     }
     
-    /*
-        My Message
-    */
+
     public void appendMyMessage(String msg, String header){
         jTextPane1.setEditable(true);
         getMsgHeader(header, Color.ORANGE);
@@ -98,18 +90,14 @@ public class MainForm extends javax.swing.JFrame {
         jTextPane1.setEditable(false);
     }
     
-    /*
-        Message Header
-    */
+
     public void getMsgHeader(String header, Color color){
         int len = jTextPane1.getDocument().getLength();
         jTextPane1.setCaretPosition(len);
         jTextPane1.setCharacterAttributes(MessageStyle.styleMessageContent(color, "Impact", 13), false);
         jTextPane1.replaceSelection(header+":");
     }
-    /*
-        Message Content
-    */
+
     public void getMsgContent(String msg, Color color){
         int len = jTextPane1.getDocument().getLength();
         jTextPane1.setCaretPosition(len);
@@ -119,12 +107,10 @@ public class MainForm extends javax.swing.JFrame {
     
     public void appendOnlineList(Vector list){
         //  showOnLineList(list);  -  Original Method()
-        sampleOnlineList(list);  // - Sample Method()
+        sampleOnlineList(list);  
     }
     
-    /*
-        Append online list
-    */
+
     public void showOnLineList(Vector list){
         try {
             txtpane2.setEditable(true);
@@ -184,63 +170,43 @@ public class MainForm extends javax.swing.JFrame {
       ************************************  Show Online Sample  *********************************************
     */
     
-    
-    
-    
-    /*
-        Get image file path
-    */
+   
     public URL getImageFile(){
         URL url = this.getClass().getResource("/images/online.png");
         return url;
     }
     
     
-    /*
-        Set myTitle
-    */
     public void setMyTitle(String s){
         setTitle(s);
     }
     
-    /*
-        Get My Download Folder
-    */
+
     public String getMyDownloadFolder(){
         return this.mydownloadfolder;
     }
     
-    /*
-        Get Host
-    */
+
     public String getMyHost(){
         return this.host;
     }
     
-    /*
-        Get Port
-    */
+
     public int getMyPort(){
         return this.port;
     }
     
-    /*
-        Get My Username
-    */
+
     public String getMyUsername(){
         return this.username;
     }
     
-    /*
-        Update Attachment 
-    */
+
     public void updateAttachment(boolean b){
         this.attachmentOpen = b;
     }
     
-    /*
-        This will open a file chooser
-    */
+
     public void openFolder(){
         chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         int open = chooser.showDialog(this, "Browse");
@@ -252,11 +218,6 @@ public class MainForm extends javax.swing.JFrame {
     }
 
     
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -388,7 +349,7 @@ public class MainForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+       
         try {
             String content = username+" "+ jTextField1.getText();
             dos.writeUTF("CMD_CHATALL "
@@ -401,11 +362,11 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
-        // TODO add your handling code here:
+      
     }//GEN-LAST:event_jMenu3ActionPerformed
 
     private void sendFileMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendFileMenuActionPerformed
-        // TODO add your handling code here:
+        
         if(!attachmentOpen){
             SendFile s = new SendFile();
             if(s.prepare(username, host, port, this)){
@@ -419,7 +380,7 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_sendFileMenuActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        // TODO add your handling code here:
+       
         int confirm = JOptionPane.showConfirmDialog(this, "Close this Application.?");
         if(confirm == 0){
             try {
@@ -433,7 +394,7 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
+       
         try {
             String content = username+" "+ evt.getActionCommand();
             dos.writeUTF("CMD_CHATALL "+ content);
@@ -445,7 +406,7 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
+       
         try {
             chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
             int browse = chooser.showOpenDialog(this);
@@ -457,7 +418,7 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void LogoutMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutMenuActionPerformed
-        // TODO add your handling code here:
+       
         int confirm = JOptionPane.showConfirmDialog(null, "Logout your Account.?");
         if(confirm == 0){
             try {
@@ -471,34 +432,9 @@ public class MainForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_LogoutMenuActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
+    public static void main(String args[]) {
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainForm().setVisible(true);

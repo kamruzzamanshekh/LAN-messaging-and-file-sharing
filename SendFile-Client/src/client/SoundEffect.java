@@ -30,12 +30,11 @@ public enum SoundEffect {
     
     public void play(){
         if(clip.isRunning()){
-            clip.stop(); //  Stop Audio
+            clip.stop();
         }
-        //  Reset Audio from the beginning
         clip.setFramePosition(0);
         clip.start();
-        //  Check if audio play continuously
+       
         if(loop){
             clip.loop(Clip.LOOP_CONTINUOUSLY);
         }
@@ -43,7 +42,7 @@ public enum SoundEffect {
     
     public void stop(){
         if(clip.isRunning()){
-            clip.stop(); //   Stop Audio
+            clip.stop(); 
         }
     }
 }

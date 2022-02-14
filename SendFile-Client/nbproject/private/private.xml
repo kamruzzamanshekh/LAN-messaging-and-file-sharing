@@ -2,15 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/User/Desktop/6th%20Semester/LAB/Distributed%20System/Lan-Chat-and-File-Transfer-master/SendFile-Client/src/client/SendFile.java</file>
-            <file>file:/C:/Users/User/Desktop/6th%20Semester/LAB/Distributed%20System/Lan-Chat-and-File-Transfer-master/SendFile-Client/src/client/MessageStyle.java</file>
-            <file>file:/C:/Users/User/Desktop/6th%20Semester/LAB/Distributed%20System/Lan-Chat-and-File-Transfer-master/SendFile-Client/src/client/LoginForm.java</file>
-            <file>file:/C:/Users/User/Desktop/6th%20Semester/LAB/Distributed%20System/Lan-Chat-and-File-Transfer-master/SendFile-Client/src/client/ClientThread.java</file>
-            <file>file:/C:/Users/User/Desktop/6th%20Semester/LAB/Distributed%20System/Lan-Chat-and-File-Transfer-master/SendFile-Client/src/client/ReceivingFileThread.java</file>
-            <file>file:/C:/Users/User/Desktop/6th%20Semester/LAB/Distributed%20System/Lan-Chat-and-File-Transfer-master/SendFile-Client/src/client/SoundEffect.java</file>
-            <file>file:/C:/Users/User/Desktop/6th%20Semester/LAB/Distributed%20System/Lan-Chat-and-File-Transfer-master/SendFile-Client/src/client/MainForm.java</file>
-            <file>file:/C:/Users/User/Desktop/6th%20Semester/LAB/Distributed%20System/Lan-Chat-and-File-Transfer-master/SendFile-Client/src/client/SendingFileThread.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

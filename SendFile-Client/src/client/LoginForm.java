@@ -59,7 +59,7 @@ public class LoginForm extends javax.swing.JFrame {
         jLabel2.setText("IP Address:");
 
         txtHost.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtHost.setText("127.0.0.1");
+        txtHost.setText("127.1.0.255");
         txtHost.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtHostActionPerformed(evt);
@@ -144,7 +144,7 @@ public class LoginForm extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            // TODO add your handling code here:
+  
             connectToServer();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
@@ -153,7 +153,7 @@ public class LoginForm extends javax.swing.JFrame {
 
     private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
         try {
-            // TODO add your handling code here:
+       
             connectToServer();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
@@ -161,30 +161,28 @@ public class LoginForm extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUsernameActionPerformed
 
     private void txtHostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHostActionPerformed
-        // TODO add your handling code here:
+     
     }//GEN-LAST:event_txtHostActionPerformed
 
     private void txtPortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPortActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtPortActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     
-    
-    /*  Connect to Server    */
+
     private void connectToServer() throws FileNotFoundException {
         if (txtHost.getText().length() > 0 && txtPort.getText().length() > 0 && txtUsername.getText().length() > 0) {
             if (txtUsername.getText().length() <= 15) {
-                /*   Clean Username  */
+
                 String username = txtUsername.getText();
                 String password = jTextField1.getText();
                 String u = username.replace(" ", "_");
-                /*  Show MainForm  */
 
-                //check password
+               
                 Scanner fileScan = new Scanner(new File("1.txt"));
                 boolean found = false; // added this variable
                 while (fileScan.hasNextLine()) {
@@ -192,21 +190,16 @@ public class LoginForm extends javax.swing.JFrame {
                     String Username = input.substring(0, input.indexOf('$'));
                     String Password = input.substring(input.indexOf('$') + 1, input.length());
 
-                    //System.out.println(Username);
-                    //System.out.println(Password);
-                    //System.out.println(inputusername);
-                    //System.out.println(inputpassword);
                     if (Username.equals(username) && (Password.equals(password))) {
-                        found = true; // added this to set found
+                        found = true; 
 
                     }
-// removed the else statement
                 }
 
                 if (found == true) {
                     MainForm main = new MainForm();
                     main.initFrame(u, txtHost.getText(), Integer.parseInt(txtPort.getText()));
-                    //  check if were connected
+           
                     if (main.isConnected()) {
                         main.setLocationRelativeTo(null);
                         main.setVisible(true);
@@ -225,34 +218,10 @@ public class LoginForm extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Incomplete Form.!", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
+    
+    public static void main(String args[]) {
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 LoginForm lf = new LoginForm();

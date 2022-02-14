@@ -35,11 +35,11 @@ public class ClientThread implements Runnable{
             while(!Thread.currentThread().isInterrupted()){
                 String data = dis.readUTF();
                 st = new StringTokenizer(data);
-                /** Get Message CMD **/
+               
                 String CMD = st.nextToken();
                 switch(CMD){
                     case "CMD_MESSAGE":
-                        SoundEffect.MessageReceive.play(); //  Play Audio clip
+                        SoundEffect.MessageReceive.play(); 
                         String msg = "";
                         String frm = st.nextToken();
                         while(st.hasMoreTokens()){
@@ -60,35 +60,34 @@ public class ClientThread implements Runnable{
                         break;
                     
                         
-                    //  This will inform the client that there's a file receive, Accept or Reject the file  
-                    case "CMD_FILE_XD":  // Format:  CMD_FILE_XD [sender] [receiver] [filename]
+                     
+                    case "CMD_FILE_XD":  
                         String sender = st.nextToken();
                         String receiver = st.nextToken();
                         String fname = st.nextToken();
                         int confirm = JOptionPane.showConfirmDialog(main, "From: "+sender+"\nFilename: "+fname+"\nWould you like to Accept?");
-                        SoundEffect.FileSharing.play(); //   Play Audio
-                        if(confirm == 0){ // client accepted the request, then inform the sender to send the file now
-                            /* Select where to save this file   */
+                        SoundEffect.FileSharing.play(); 
+                        if(confirm == 0){ 
                             main.openFolder();
                             try {
                                 dos = new DataOutputStream(socket.getOutputStream());
-                                // Format:  CMD_SEND_FILE_ACCEPT [ToSender] [Message]
+                               
                                 String format = "CMD_SEND_FILE_ACCEPT "+sender+" accepted";
                                 dos.writeUTF(format);
                                 
-                                /*  this will create a filesharing socket to handle incoming file and this socket will automatically closed when it's done.  */
+                                
                                 Socket fSoc = new Socket(main.getMyHost(), main.getMyPort());
                                 DataOutputStream fdos = new DataOutputStream(fSoc.getOutputStream());
                                 fdos.writeUTF("CMD_SHARINGSOCKET "+ main.getMyUsername());
-                                /*  Run Thread for this   */
+                                
                                 new Thread(new ReceivingFileThread(fSoc, main)).start();
                             } catch (IOException e) {
                                 System.out.println("[CMD_FILE_XD]: "+e.getMessage());
                             }
-                        } else { // client rejected the request, then send back result to sender
+                        } else { 
                             try {
                                 dos = new DataOutputStream(socket.getOutputStream());
-                                // Format:  CMD_SEND_FILE_ERROR [ToSender] [Message]
+                                
                                 String format = "CMD_SEND_FILE_ERROR "+sender+" Client rejected your request or connection was lost.!";
                                 dos.writeUTF(format);
                             } catch (IOException e) {
